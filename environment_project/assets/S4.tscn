@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://meshes/S4.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://materials/other.tres" type="Material" id=2]
+[ext_resource path="res://materials/floor.tres" type="Material" id=3]
+[ext_resource path="res://materials/walls.tres" type="Material" id=4]
+
+[sub_resource type="ConcavePolygonShape" id=4]
+data = PoolVector3Array( -100, 2.25, 47, 100, 2.25, 47, -100, 150, 47, -100, 150, 47, 100, 2.25, 47, 100, 150, 47, -100, 150, -47, 100, 150, -47, -100, 2.25, -47, -100, 2.25, -47, 100, 150, -47, 100, 2.25, -47, 100, 2.25, -47, 100, 2.25, 47, -100, 2.25, -47, -100, 2.25, -47, 100, 2.25, 47, -100, 2.25, 47, -100, 150, 50, 100, 150, 50, -100, 0, 50, -100, 0, 50, 100, 150, 50, 100, 0, 50, -100, 0, -50, 100, 0, -50, -100, 150, -50, -100, 150, -50, 100, 0, -50, 100, 150, -50, -100, 0, -50, -100, 0, 50, 100, 0, -50, 100, 0, -50, -100, 0, 50, 100, 0, 50, 100, 2.25, 47, 100, 0, 50, 100, 150, 47, 100, 150, 47, 100, 0, 50, 100, 150, 50, 100, 150, 47, 100, 150, 50, -100, 150, 47, -100, 150, 47, 100, 150, 50, -100, 150, 50, -100, 150, 47, -100, 150, 50, -100, 2.25, 47, -100, 2.25, 47, -100, 150, 50, -100, 0, 50, 100, 150, -47, 100, 150, -50, 100, 2.25, -47, 100, 2.25, -47, 100, 150, -50, 100, 0, -50, -100, 2.25, -47, -100, 0, -50, -100, 150, -47, -100, 150, -47, -100, 0, -50, -100, 150, -50, -100, 150, -47, -100, 150, -50, 100, 150, -47, 100, 150, -47, -100, 150, -50, 100, 150, -50, -100, 2.25, 47, -100, 0, 50, -100, 2.25, -47, -100, 2.25, -47, -100, 0, 50, -100, 0, -50, 100, 2.25, -47, 100, 0, -50, 100, 2.25, 47, 100, 2.25, 47, 100, 0, -50, 100, 0, 50 )
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( -101.567, 7.9505, 53.1746, -101.567, 150.78, 53.1746, -95.9812, 11.8783, 47, -95.9812, 146.852, 47, 95.9812, 11.8783, 47, 95.9812, 146.852, 47, 101.567, 7.9505, 53.1746, 101.567, 150.78, 53.1746 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -101.567, 7.9505, -51.5867, -101.567, 7.9505, -45.2387, -101.567, 150.78, -51.5867, -101.567, 150.78, -45.2387, 101.567, 7.9505, -51.5867, 101.567, 7.9505, -45.2387, 101.567, 150.78, -51.5867, 101.567, 150.78, -45.2387 )
+
+[node name="Spatial" type="Area"]
+
+[node name="S4" type="MeshInstance" parent="."]
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 4 )
+material/1 = ExtResource( 3 )
+material/2 = ExtResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="S4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="S4/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="."]
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0 )
+shape = SubResource( 3 )

@@ -1,0 +1,9 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://textures/stones_patch_road_cobblestones_away_background_texture_structure-546877.jpg" type="Texture" id=1]
+
+[resource]
+params_cull_mode = 2
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+uv1_scale = Vector3( 3, 3, 3 )
