@@ -30,17 +30,17 @@ class Environment:
         self.right_matcher = cv2.ximgproc.createRightMatcher(self.left_matcher)
         self.wls_filter = cv2.ximgproc.createDisparityWLSFilter(self.left_matcher)
         self.wls_filter.setLambda(8000)
-        self.wls_filter.setSigmaColor(1.9)
+        self.wls_filter.setSigmaColor(1.2)
 
         self.next_observation = None
         self.actions = (0, 1, 2, 3, 4, 5)
         self.rewards = {
             0: 1.0,
-            1: -1.5,
+            1: -50,
             2: 1.0,
             3: 1.0,
-            4: -1.5,
-            5: -1.5,  # all -1.5 were -0.5 before
+            4: -50,
+            5: -50,  # all -1.5 were -0.5 before
             "Penalty": -100
         }
 
@@ -125,10 +125,17 @@ class Environment:
             right_disp = self.right_matcher.compute(right_image, left_image)
 
             filtered_disp = self.wls_filter.filter(left_disp, left_image, disparity_map_right=right_disp)
-            filtered_disp = filtered_disp[34:-2, 34:-2]  # Crop no information area and make frame looks rectangle
-
+            filtered_disp = filtered_disp[33:-2, 33:-2]  # Crop no information area and make frame looks rectangle
+                                                        # Я оставил один пиксель (было 34 на отрез), чтобы после нормализации  выглядело лучше
             norm_image = cv2.normalize(filtered_disp, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX,
                                        dtype=cv2.CV_32F)
+            
+            #TO SHOW DEPTH MAP
+            cv2.imshow('Frame',norm_image)
+            cv2.moveWindow('Frame',600,500)
+            cv2.waitKey(25)
+            
+            
             norm_image = cv2.resize(norm_image, (64, 64))  # Hard-Coded 64x64
 
             observation.append(norm_image)
